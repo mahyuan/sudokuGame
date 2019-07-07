@@ -96,9 +96,98 @@
 "use strict";
 
 
-(function () {
-    console.log(2222);
-})();
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var toolkit = __webpack_require__(/*! ./toolkit */ "./src/js/toolkit.js");
+var matrix = toolkit.makeMatrix();
+
+var Grid = function () {
+    function Grid(container) {
+        _classCallCheck(this, Grid);
+
+        this._$container = container;
+    }
+
+    _createClass(Grid, [{
+        key: 'build',
+        value: function build() {
+            var matrix = toolkit.makeMatrix();
+            console.log('matrix', matrix);
+
+            var $cells = matrix.map(function (rowValues) {
+                return rowValues.map(function (cellValue) {
+                    return $('<span>').addClass('cell').text(cellValue);
+                });
+            });
+
+            console.log('$cells', $cells);
+
+            var $divArray = $cells.map(function ($spanArray) {
+                return $('div')
+                // .addClass('row')
+                .append($spanArray);
+            });
+
+            console.log('  $divArray', $divArray);
+            this._$container.append($divArray);
+        }
+    }]);
+
+    return Grid;
+}();
+
+new Grid($('#container')).build();
+
+/***/ }),
+
+/***/ "./src/js/toolkit.js":
+/*!***************************!*\
+  !*** ./src/js/toolkit.js ***!
+  \***************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var matrixToolkit = {
+    makeRow: function makeRow() {
+        var v = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+
+        var arr = new Array(9);
+        arr.fill(v);
+        return arr;
+        return Array.from({ length: 9 }).fill(v);
+    },
+    makeMatrix: function makeMatrix() {
+        var _this = this;
+
+        var v = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 9;
+
+        return Array.from({ length: 9 }).map(function () {
+            return _this.makeRow();
+        });
+    },
+
+
+    /**
+     * Fisher-Yates 洗牌算法
+     */
+    shuffle: function shuffle(array) {
+        var endIndex = array.length - 2;
+        for (var i = 0; i <= endIndex; i++) {
+            var j = Math.floor(Math.random() * (array.length - i)) + i;
+            var _ref = [array[j], array[i]];
+            array[i] = _ref[0];
+            array[j] = _ref[1];
+        }
+        return array;
+    }
+};
+
+module.exports = matrixToolkit;
 
 /***/ })
 
