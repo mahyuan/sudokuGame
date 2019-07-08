@@ -114,31 +114,39 @@ var Grid = function () {
         key: 'build',
         value: function build() {
             var matrix = toolkit.makeMatrix();
-            console.log('matrix', matrix);
+
+            var rowGroupClasses = ['row_g_top', 'row_g_middle', 'row_g_bottom'];
+            var colGroupClasses = ['col_g_left', 'col_g_middle', 'col_g_right'];
 
             var $cells = matrix.map(function (rowValues) {
-                return rowValues.map(function (cellValue) {
-                    return $('<span>').addClass('cell').text(cellValue);
+                return rowValues.map(function (cellValue, colIndex) {
+                    return $('<span>').addClass(colGroupClasses[colIndex % 3]).text(cellValue);
                 });
             });
 
-            console.log('$cells', $cells);
-
-            var $divArray = $cells.map(function ($spanArray) {
-                return $('div')
-                // .addClass('row')
-                .append($spanArray);
+            var $divArray = $cells.map(function ($spanArray, rowIndex) {
+                return $('<div>').addClass('row').addClass(rowGroupClasses[rowIndex % 3]).append($spanArray);
             });
 
-            console.log('  $divArray', $divArray);
             this._$container.append($divArray);
+        }
+    }, {
+        key: 'layout',
+        value: function layout() {
+            var width = $('span:first', this._$container).width();
+            $('span', this._$container).height(width).css({
+                'line-height': width + 'px',
+                'font-size': width < 32 ? width / 2 + 'px' : ''
+            });
         }
     }]);
 
     return Grid;
 }();
 
-new Grid($('#container')).build();
+var grid = new Grid($('#container'));
+grid.build();
+grid.layout();
 
 /***/ }),
 

@@ -10,6 +10,7 @@ gulp.task('webpack', () => {
 
 // 编译less
 gulp.task('less', () => {
+    console.log('less')
     const less = require('gulp-less')
 
     gulp.src('./src/less/*.less')
@@ -17,4 +18,9 @@ gulp.task('less', () => {
         .pipe(gulp.dest('./www/css'))
 })
 
+
 gulp.task('default',  ['webpack', 'less'])
+gulp.task('watch', () => {
+    gulp.watch('src/less/**/*.less', ['less'])
+    gulp.watch('src/js/**/*.js', ['webpack'])
+})
