@@ -10796,10 +10796,10 @@ var Generator = function () {
 
 module.exports = Generator;
 
-var generator = new Generator();
-generator.generate();
-console.log('-----------------generator.matrix---------------');
-console.log(generator.matrix);
+// const generator = new Generator();
+// generator.generate();
+// console.log('-----------------generator.matrix---------------');
+// console.log(generator.matrix);
 
 /***/ }),
 
