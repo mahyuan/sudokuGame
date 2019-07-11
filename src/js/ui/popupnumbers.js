@@ -34,7 +34,7 @@ module.exports = class PopumNumbers {
 
   popup($cell) {
     this._$targetCell = $cell;
-    const {left, top } = $cell.position();
+    const { left, top } = $cell.position();
     this._$panel.css({
       left: `${left}px`,
       top: `${top}px`
