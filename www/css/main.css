@@ -57,6 +57,12 @@ body > * {
 .container .row > span:last-child {
   border-right-width: 2px;
 }
+.container .row > span.fixed {
+  background: #eee;
+}
+.container .row > span.empty {
+  color: #fff;
+}
 .container .row:first-child > span {
   border-top-width: 2px;
 }

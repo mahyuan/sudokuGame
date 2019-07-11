@@ -1,5 +1,6 @@
-const Generator = require('../core/generator');
 const $ = require('jquery');
+// const Generator = require('../core/generator');
+const Sudoku = require('../core/sudoku');
 
 class Grid {
   constructor(container) {
@@ -7,10 +8,14 @@ class Grid {
   }
 
   build() {
-    const generator = new Generator();
-    generator.generate();
-    const matrix = generator.matrix;
-    console.log('matrix', matrix);
+    // const generator = new Generator();
+    // generator.generate();
+    // const matrix = generator.matrix;
+    // console.log('matrix', matrix);
+
+    const sudoku = new Sudoku();
+    sudoku.make();
+    const matrix = sudoku.puzzleMatrix;
 
     const rowGroupClasses = ['row_g_top', 'row_g_middle', 'row_g_bottom'];
     const colGroupClasses = ['col_g_left', 'col_g_middle', 'col_g_right'];
@@ -19,6 +24,7 @@ class Grid {
       rowValues.map((cellValue, colIndex) => {
         return $('<span>')
           .addClass(colGroupClasses[colIndex % 3])
+          .addClass(cellValue ? 'fixed' : 'empty')
           .text(cellValue);
       })
     );

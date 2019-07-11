@@ -10803,6 +10803,55 @@ module.exports = Generator;
 
 /***/ }),
 
+/***/ "./src/js/core/sudoku.js":
+/*!*******************************!*\
+  !*** ./src/js/core/sudoku.js ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * 生成数独游戏
+ * 生成完成的解决方案： Generator
+ * 随机去除部分数据
+ */
+var Generator = __webpack_require__(/*! ./generator */ "./src/js/core/generator.js");
+
+module.exports = function () {
+  function Sudoku() {
+    _classCallCheck(this, Sudoku);
+
+    var generator = new Generator();
+    generator.generate();
+    this.solutionMartix = generator.matrix;
+  }
+
+  _createClass(Sudoku, [{
+    key: 'make',
+    value: function make() {
+      var level = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 5;
+
+      // 生成密盘
+      this.puzzleMatrix = this.solutionMartix.map(function (row) {
+        return row.map(function (cell) {
+          return Math.random() * 9 < level ? 0 : cell;
+        });
+      });
+    }
+  }]);
+
+  return Sudoku;
+}();
+
+/***/ }),
+
 /***/ "./src/js/core/toolkit.js":
 /*!********************************!*\
   !*** ./src/js/core/toolkit.js ***!
@@ -10966,8 +11015,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Generator = __webpack_require__(/*! ../core/generator */ "./src/js/core/generator.js");
 var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+// const Generator = require('../core/generator');
+var Sudoku = __webpack_require__(/*! ../core/sudoku */ "./src/js/core/sudoku.js");
 
 var Grid = function () {
   function Grid(container) {
@@ -10979,17 +11029,21 @@ var Grid = function () {
   _createClass(Grid, [{
     key: 'build',
     value: function build() {
-      var generator = new Generator();
-      generator.generate();
-      var matrix = generator.matrix;
-      console.log('matrix', matrix);
+      // const generator = new Generator();
+      // generator.generate();
+      // const matrix = generator.matrix;
+      // console.log('matrix', matrix);
+
+      var sudoku = new Sudoku();
+      sudoku.make();
+      var matrix = sudoku.puzzleMatrix;
 
       var rowGroupClasses = ['row_g_top', 'row_g_middle', 'row_g_bottom'];
       var colGroupClasses = ['col_g_left', 'col_g_middle', 'col_g_right'];
 
       var $cells = matrix.map(function (rowValues) {
         return rowValues.map(function (cellValue, colIndex) {
-          return $('<span>').addClass(colGroupClasses[colIndex % 3]).text(cellValue);
+          return $('<span>').addClass(colGroupClasses[colIndex % 3]).addClass(cellValue ? 'fixed' : 'empty').text(cellValue);
         });
       });
 
