@@ -26,9 +26,6 @@ body > * {
   padding: 0;
   text-align: center;
 }
-.hidden {
-  display: none;
-}
 .container {
   display: block;
   width: 100%;
@@ -63,6 +60,12 @@ body > * {
 .container .row > span.empty {
   color: #fff;
 }
+.container .row > span.mark1 {
+  background: lightpink;
+}
+.container .row > span.mark2 {
+  background: lightgoldenrodyellow;
+}
 .container .row:first-child > span {
   border-top-width: 2px;
 }
@@ -71,6 +74,59 @@ body > * {
 }
 .container .row.row_g_bottom > span {
   border-bottom-width: 2px;
+}
+.popup-num {
+  display: block;
+  width: 100%;
+  padding-left: 5%;
+  padding-top: 20px;
+  box-sizing: border-box;
+}
+.popup-num .row > span {
+  display: inline-block;
+  width: 10%;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  border: 1px solid #ccc;
+  background: #fff;
+  border-right-width: 0;
+  border-bottom-width: 0;
+  cursor: pointer;
+}
+.popup-num .row > span.col_g_right {
+  border-right-width: 2px;
+}
+.popup-num .row > span:first-child {
+  border-left-width: 2px;
+}
+.popup-num .row > span:last-child {
+  border-right-width: 2px;
+}
+.popup-num .row > span.fixed {
+  background: #eee;
+}
+.popup-num .row > span.empty {
+  color: #fff;
+}
+.popup-num .row > span.mark1 {
+  background: lightpink;
+}
+.popup-num .row > span.mark2 {
+  background: lightgoldenrodyellow;
+}
+.popup-num .row:first-child > span {
+  border-top-width: 2px;
+}
+.popup-num .row:last-child > span {
+  border-bottom-width: 2px;
+}
+.popup-num .row.row_g_bottom > span {
+  border-bottom-width: 2px;
+}
+.popup-num .row span {
+  width: popupCellSize;
+  height: popupCellSize;
 }
 .dashboard {
   position: absolute;
