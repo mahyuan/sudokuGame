@@ -10994,10 +10994,13 @@ module.exports = function () {
 
 var Grid = __webpack_require__(/*! ./ui/grid */ "./src/js/ui/grid.js");
 var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-
+var PopupNumbers = __webpack_require__(/*! ./ui/popupnumbers */ "./src/js/ui/popupnumbers.js");
 var grid = new Grid($('#container'));
 grid.build();
 grid.layout();
+
+var popupNumbers = new PopupNumbers($('#popupNumbers'));
+grid.bindPopup(popupNumbers);
 
 /***/ }),
 
@@ -11062,12 +11065,98 @@ var Grid = function () {
         'font-size': width < 32 ? width / 2 + 'px' : ''
       });
     }
+  }, {
+    key: 'bindPopup',
+    value: function bindPopup(popupNumbers) {
+      this._$container.on('click', 'span', function (event) {
+        var $cell = $(event.target);
+        popupNumbers.popup($cell);
+      });
+    }
   }]);
 
   return Grid;
 }();
 
 module.exports = Grid;
+
+/***/ }),
+
+/***/ "./src/js/ui/popupnumbers.js":
+/*!***********************************!*\
+  !*** ./src/js/ui/popupnumbers.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+
+module.exports = function () {
+  function PopumNumbers($panel) {
+    var _this = this;
+
+    _classCallCheck(this, PopumNumbers);
+
+    this._$panel = $panel.hide().removeClass('hidden');
+    this._$panel.on('click', 'span', function (event) {
+      var $cell = _this._$targetCell;
+      var $span = $(event.target);
+      /**
+       * 1-9 回填数字
+       * mark1 mark2 回填样式
+       * empty 取消数字填写，取消mark
+       */
+      if ($span.hasClass('mark1')) {
+        if ($cell.hasClass('mark1')) {
+          $cell.removeClass('mark1');
+        } else {
+          $cell.removeClass('mark2').addClass('mark1');
+        }
+      } else if ($span.hasClass('mark2')) {
+        if ($cell.hasClass('mark2')) {
+          $cell.removeClass('mark2');
+        } else {
+          $cell.removeClass('mark1').addClass('mark2');
+        }
+      } else if ($span.hasClass('empty')) {
+        $cell.text(0).addClass('empty');
+      } else {
+        $cell.removeClass('empty').text($span.text());
+      }
+      _this.hide();
+    });
+  }
+
+  _createClass(PopumNumbers, [{
+    key: 'popup',
+    value: function popup($cell) {
+      this._$targetCell = $cell;
+
+      var _$cell$position = $cell.position(),
+          left = _$cell$position.left,
+          top = _$cell$position.top;
+
+      this._$panel.css({
+        left: left + 'px',
+        top: top + 'px'
+      }).show();
+    }
+  }, {
+    key: 'hide',
+    value: function hide() {
+      this._$panel.hide();
+    }
+  }]);
+
+  return PopumNumbers;
+}();
 
 /***/ })
 

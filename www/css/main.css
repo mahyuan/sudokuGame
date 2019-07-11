@@ -76,6 +76,8 @@ body > * {
   border-bottom-width: 2px;
 }
 .popup-num {
+  position: absolute;
+  padding-left: 0;
   display: block;
   width: 100%;
   padding-left: 5%;

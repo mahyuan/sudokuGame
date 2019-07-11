@@ -48,6 +48,13 @@ class Grid {
         'font-size': width < 32 ? `${width / 2}px` : ''
       });
   }
+
+  bindPopup(popupNumbers) {
+    this._$container.on('click', 'span', event => {
+      const $cell = $(event.target);
+      popupNumbers.popup($cell);
+    });
+  }
 }
 
 module.exports = Grid;
