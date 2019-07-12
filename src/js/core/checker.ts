@@ -2,9 +2,9 @@
 import Toolkit from './toolkit'
 
 // 检查数据是否重复
-function checkArray(array) {
+function checkArray(array: number[]): boolean[] {
   const length = array.length;
-  const marks = new Array(length);
+  const marks: boolean[] = new Array(length);
   marks.fill(true);
   for (let i = 0; i < length - 1; i++) {
     if (!marks[i]) {
@@ -34,24 +34,24 @@ function checkArray(array) {
  * 输出：检查是否成功，marks
  */
 class Checker {
-  private _matrix;
-  private _matrixMarks;
+  private _matrix: number[][];
+  private _matrixMarks: boolean[][];
   private _success: boolean = false;
 
-  constructor(matrix) {
+  constructor(matrix: number[][]) {
     this._matrix = matrix;
     this._matrixMarks = Toolkit.matrix.makeMatrix(true);
   }
 
-  get matrixMarks() {
+  get matrixMarks(): boolean[][] {
     return this._matrixMarks;
   }
 
-  get isSuccess() {
+  get isSuccess(): boolean {
     return this._success;
   }
 
-  check() {
+  check(): boolean {
     this.checkRows();
     this.checkCols();
     this.checkBoxes();
@@ -60,7 +60,7 @@ class Checker {
     return this._success;
   }
 
-  checkRows() {
+  private checkRows() {
     for (let rowIndex = 0; rowIndex < 9; rowIndex++) {
       const row = this._matrix[rowIndex];
       const marks = checkArray(row);
@@ -73,7 +73,7 @@ class Checker {
     }
   }
 
-  checkCols() {
+  private checkCols() {
     for (let colIndex = 0; colIndex < 9; colIndex++) {
       const cols: Array<number> = [] ;
       for (let rowIndex: number = 0; rowIndex < 9; rowIndex++) {
@@ -89,7 +89,7 @@ class Checker {
     }
   }
 
-  checkBoxes() {
+  private checkBoxes() {
     for (let boxIndex = 0; boxIndex < 9; boxIndex++) {
       const boxes = Toolkit.box.getBoxCells(this._matrix, boxIndex);
       const marks = checkArray(boxes);

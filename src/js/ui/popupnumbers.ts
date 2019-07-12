@@ -1,10 +1,10 @@
 import $ from 'jquery'
 
 class PopumNumbers {
-  _$panel;
-  _$targetCell
+  private _$panel: JQuery;
+  private _$targetCell: JQuery
 
-  constructor($panel) {
+  constructor($panel: JQuery) {
     this._$panel = $panel.hide().removeClass('hidden');
     this._$panel.on('click', 'span', event => {
       const $cell = this._$targetCell;
@@ -35,7 +35,7 @@ class PopumNumbers {
     });
   }
 
-  popup($cell) {
+  popup($cell: JQuery) {
     this._$targetCell = $cell;
     const { left, top } = $cell.position();
     this._$panel.css({

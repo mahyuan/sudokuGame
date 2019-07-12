@@ -41,12 +41,11 @@ class Grid {
         });
     }
     check() {
-        const $rows = this._$container.children();
-        const data = $rows.map((rowIndex, div) => {
-            return jquery_1.default(div).children()
-                .map((colIndex, span) => parseInt(jquery_1.default(span).text()) || 0);
-        }).toArray().map($data => $data.toArray());
-        console.log('data', data);
+        const $rows = this._$container.children().toArray();
+        const data = $rows.map((div) => {
+            return jquery_1.default(div).children().toArray()
+                .map(span => parseInt(jquery_1.default(span).text(), 10) || 0);
+        });
         const checker = new checker_1.default(data);
         if (!checker.check()) {
             const marks = checker.matrixMarks;

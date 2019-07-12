@@ -4,10 +4,10 @@
 import Toolkit from './toolkit';
 
 class Generator {
-  matrix;
-  orders;
+  matrix: number[][];
+  orders: number[][];
 
-  generate() {
+  generate(): void {
     while (!this.internalGenerate()) {
       //
     }
@@ -28,12 +28,12 @@ class Generator {
     return true;
   }
 
-  fillNumber(n) {
+  private fillNumber(n: number) {
     return this.fillRow(n, 0);
   }
 
   // 当前行填写n成功，递归调用 fillRow 来在下一行填写n
-  fillRow(n, rowIndex) {
+  private fillRow(n: number, rowIndex: number) {
     if (rowIndex > 8) {
       return true;
     }

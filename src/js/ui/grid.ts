@@ -1,11 +1,12 @@
 import $ from 'jquery';
 import Sudoku from '../core/sudoku';
 import Checker from '../core/checker';
+import PopupNumbers from './popupnumbers';
 
 class Grid {
-  _$container;
+  private _$container: JQuery; // @types/jquery
 
-  constructor(container) {
+  constructor(container: JQuery) {
     this._$container = container;
   }
 
@@ -48,13 +49,14 @@ class Grid {
   }
 
   check() {
-    const $rows = this._$container.children();
-    const data = $rows.map((rowIndex, div) => {
-      return $(div).children()
-        .map((colIndex, span) => parseInt($(span).text()) || 0);
-    }).toArray().map($data => $data.toArray());
+    const $rows = this._$container.children().toArray();
 
-    console.log('data', data);
+    const data = $rows.map((div: HTMLElement): number[] => {
+      return $(div).children().toArray()
+        .map(span => parseInt($(span).text(), 10) || 0);
+    });
+
+
     const checker = new Checker(data);
 
     if (!checker.check()) {
@@ -92,7 +94,7 @@ class Grid {
     this.layout();
   }
 
-  bindPopup(popupNumbers) {
+  bindPopup(popupNumbers: PopupNumbers) {
     this._$container.on('click', 'span', event => {
       const $cell = $(event.target);
       if (!$cell.is('.fixed')) {

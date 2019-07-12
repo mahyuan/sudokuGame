@@ -6,8 +6,8 @@
 import Generator from './generator';
 
 class Sudoku {
-  solutionMartix;
-  puzzleMatrix
+  solutionMartix: number[][];
+  puzzleMatrix: number[][];
 
   constructor() {
     const generator = new Generator();
@@ -15,7 +15,7 @@ class Sudoku {
     this.solutionMartix = generator.matrix;
   }
 
-  make(level = 5) {
+  make(level: number = 5) {
     // 生成密盘
     this.puzzleMatrix = this.solutionMartix.map(row => {
       return row.map(cell => Math.random() * 9 < level ? 0 : cell);

@@ -1,7 +1,3 @@
-// const Grid = require('./ui/grid');
-// const $ = require('jquery');
-// const PopupNumbers = require('./ui/popupnumbers');
-
 import $ from 'jquery';
 import Grid from './ui/grid';
 import PopupNumbers from './ui/popupnumbers';
