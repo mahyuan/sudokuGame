@@ -1,7 +1,9 @@
-// const $ = require('jquery');
 import $ from 'jquery'
 
 class PopumNumbers {
+  _$panel;
+  _$targetCell
+
   constructor($panel) {
     this._$panel = $panel.hide().removeClass('hidden');
     this._$panel.on('click', 'span', event => {

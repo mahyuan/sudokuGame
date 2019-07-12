@@ -1,22 +1,15 @@
-// const $ = require('jquery');
-// const Sudoku = require('../core/sudoku');
-// const Checker = require('../core/checker');
-
 import $ from 'jquery';
 import Sudoku from '../core/sudoku';
 import Checker from '../core/checker';
 
 class Grid {
+  _$container;
+
   constructor(container) {
     this._$container = container;
   }
 
   build() {
-    // const generator = new Generator();
-    // generator.generate();
-    // const matrix = generator.matrix;
-    // console.log('matrix', matrix);
-
     const sudoku = new Sudoku();
     sudoku.make();
     const matrix = sudoku.puzzleMatrix;
@@ -45,7 +38,7 @@ class Grid {
   }
 
   layout() {
-    const width = $('span:first', this._$container).width();
+    const width: any = $('span:first', this._$container).width();
     $('span', this._$container)
       .height(width)
       .css({
@@ -55,8 +48,6 @@ class Grid {
   }
 
   check() {
-    // Checker
-    // const data = [];
     const $rows = this._$container.children();
     const data = $rows.map((rowIndex, div) => {
       return $(div).children()
@@ -111,5 +102,4 @@ class Grid {
   }
 }
 
-// module.exports = Grid;
 export default Grid;

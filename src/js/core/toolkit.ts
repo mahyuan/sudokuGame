@@ -2,15 +2,13 @@
  * 矩阵和数组相关工具
  */
 const matrixToolkit = {
-  makeRow(v = 0) {
-    // return Array.from({ length: 9 }, (v, i) => i);
-    // .fill(v);
+  makeRow(v: any = 0) {
     const array = new Array(9);
     array.fill(v);
     return array;
   },
 
-  makeMatrix(v = 0) {
+  makeMatrix(v: any = 0) {
     return Array.from({ length: 9 }, () => this.makeRow(v));
   },
 
@@ -53,7 +51,7 @@ const boxToolkit = {
     const startRowIndex = Math.floor(boxIndex / 3) * 3;
     const startColIndex = boxIndex % 3 * 3;
 
-    const result = [];
+    const result: Array<number> = [];
 
     for (let cellIndex = 0; cellIndex < 9; cellIndex++) {
       const rowIndex = startRowIndex + Math.floor(cellIndex / 3);

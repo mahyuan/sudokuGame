@@ -1,6 +1,5 @@
 
 import Toolkit from './toolkit'
-// const Toolkit = require('./toolkit.js');
 
 // 检查数据是否重复
 function checkArray(array) {
@@ -29,17 +28,16 @@ function checkArray(array) {
   return marks;
 }
 
-// console.log('checkArray', checkArray([1, 2, 3, 4, 5, 6, 7, 8, 9]));
-// console.log('checkArray', checkArray([3, 2, 2, 1, 5, 6, 7, 8, 9]));
-// console.log('checkArray', checkArray([1, 2, 2, 4, 5, 6, 9, 8, 9]));
-
-// module.exports = checkArray;
 /**
  * 输入：matrix，用户完成的数独数据 9x9
  * 处理：对 mactrix 行、列、宫进行检查，并填写 marks
  * 输出：检查是否成功，marks
  */
 class Checker {
+  private _matrix;
+  private _matrixMarks;
+  private _success: boolean = false;
+
   constructor(matrix) {
     this._matrix = matrix;
     this._matrixMarks = Toolkit.matrix.makeMatrix(true);
@@ -77,8 +75,8 @@ class Checker {
 
   checkCols() {
     for (let colIndex = 0; colIndex < 9; colIndex++) {
-      const cols = [];
-      for (let rowIndex = 0; rowIndex < 9; rowIndex++) {
+      const cols: Array<number> = [] ;
+      for (let rowIndex: number = 0; rowIndex < 9; rowIndex++) {
         cols[rowIndex] = this._matrix[rowIndex][colIndex];
       }
 
@@ -106,12 +104,4 @@ class Checker {
 }
 
 export default Checker;
-
-// const Generator = require('../core/generator');
-// const generator = new Generator();
-// generator.generate();
-// const matrix = generator.matrix;
-// console.log('matrix', matrix);
-// const checker = new Checker(matrix);
-// console.log('result', checker.check());
 

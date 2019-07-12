@@ -3,10 +3,12 @@
  * 生成完成的解决方案： Generator
  * 随机去除部分数据
  */
-// const Generator = require('./generator');
 import Generator from './generator';
 
 class Sudoku {
+  solutionMartix;
+  puzzleMatrix
+
   constructor() {
     const generator = new Generator();
     generator.generate();

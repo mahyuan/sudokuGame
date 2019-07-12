@@ -1,10 +1,12 @@
 /**
  * 生成数独解决方案
  */
-// const Toolkit = require('./toolkit');
 import Toolkit from './toolkit';
 
 class Generator {
+  matrix;
+  orders;
+
   generate() {
     while (!this.internalGenerate()) {
       //
@@ -67,8 +69,3 @@ class Generator {
 }
 
 export default Generator;
-
-// const generator = new Generator();
-// generator.generate();
-// console.log('-----------------generator.matrix---------------');
-// console.log(generator.matrix);

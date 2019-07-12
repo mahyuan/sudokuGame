@@ -2,6 +2,10 @@ node_modules
 .vscode
 .idea
 
-package-lock.json
+# package-lock.json
 yarn.lock
 yarn-error.log
+
+www/js
+www/css
+src/**/*.js
