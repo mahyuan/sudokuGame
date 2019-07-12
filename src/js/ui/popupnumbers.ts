@@ -1,6 +1,7 @@
-const $ = require('jquery');
+// const $ = require('jquery');
+import $ from 'jquery'
 
-module.exports = class PopumNumbers {
+class PopumNumbers {
   constructor($panel) {
     this._$panel = $panel.hide().removeClass('hidden');
     this._$panel.on('click', 'span', event => {
@@ -45,3 +46,5 @@ module.exports = class PopumNumbers {
     this._$panel.hide();
   }
 };
+
+export default PopumNumbers;

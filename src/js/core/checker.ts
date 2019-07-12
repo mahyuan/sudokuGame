@@ -1,5 +1,6 @@
 
-const Toolkit = require('./toolkit.js');
+import Toolkit from './toolkit'
+// const Toolkit = require('./toolkit.js');
 
 // 检查数据是否重复
 function checkArray(array) {
@@ -104,13 +105,13 @@ class Checker {
   }
 }
 
-module.exports = Checker;
+export default Checker;
 
-const Generator = require('../core/generator');
-const generator = new Generator();
-generator.generate();
-const matrix = generator.matrix;
-console.log('matrix', matrix);
-const checker = new Checker(matrix);
-console.log('result', checker.check());
+// const Generator = require('../core/generator');
+// const generator = new Generator();
+// generator.generate();
+// const matrix = generator.matrix;
+// console.log('matrix', matrix);
+// const checker = new Checker(matrix);
+// console.log('result', checker.check());
 

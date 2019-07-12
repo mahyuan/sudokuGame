@@ -1,7 +1,10 @@
-const $ = require('jquery');
-// const Generator = require('../core/generator');
-const Sudoku = require('../core/sudoku');
-const Checker = require('../core/checker');
+// const $ = require('jquery');
+// const Sudoku = require('../core/sudoku');
+// const Checker = require('../core/checker');
+
+import $ from 'jquery';
+import Sudoku from '../core/sudoku';
+import Checker from '../core/checker';
 
 class Grid {
   constructor(container) {
@@ -108,4 +111,5 @@ class Grid {
   }
 }
 
-module.exports = Grid;
+// module.exports = Grid;
+export default Grid;

@@ -1,7 +1,8 @@
 /**
  * 生成数独解决方案
  */
-const Toolkit = require('./toolkit');
+// const Toolkit = require('./toolkit');
+import Toolkit from './toolkit';
 
 class Generator {
   generate() {
@@ -65,7 +66,7 @@ class Generator {
   }
 }
 
-module.exports = Generator;
+export default Generator;
 
 // const generator = new Generator();
 // generator.generate();

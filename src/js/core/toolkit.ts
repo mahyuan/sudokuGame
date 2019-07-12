@@ -79,7 +79,7 @@ const boxToolkit = {
 };
 
 // 工具集
-module.exports = class Toolkit {
+class Toolkit {
   static get matrix() {
     return matrixToolkit;
   }
@@ -88,3 +88,5 @@ module.exports = class Toolkit {
     return boxToolkit;
   }
 };
+
+export default Toolkit;
